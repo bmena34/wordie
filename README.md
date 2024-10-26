@@ -19,12 +19,12 @@ Before you begin, ensure you have met the following requirements:
    cd wordie
    ```
 
-2. Add your API key as an environment variable to you docker-compose:
+2. Add your API key as an environment variable to your docker-compose:
    API_KEY=your_api_key_here
 
 3. Build the Docker containers (this will also start the containers):
    ```sh
-   docker-compose --build
+   docker-compose up --build
    ```
 
 ## Usage
