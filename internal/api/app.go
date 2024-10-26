@@ -10,19 +10,22 @@ import (
 	"github.com/go-redis/redis"
 )
 
-var redisHost = os.Getenv("REDIS_HOST")
-var redisPort = os.Getenv("REDIS_PORT")
-
 type App struct {
 	router http.Handler
 	rdb    *redis.Client
 }
 
 func New() *App {
+	redisAddr := os.Getenv("REDIS_ADDR")
+	if redisAddr == "" {
+		redisAddr = "redis:6379" // Default to IPv4 loopback address
+	}
+
 	app := &App{
 		router: loadRoutes(),
 		rdb: redis.NewClient(&redis.Options{
-			Addr: fmt.Sprintf("%s:%s", redisHost, redisPort),
+			Addr: redisAddr,
+			DB:   0,
 		}),
 	}
 
