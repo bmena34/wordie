@@ -11,7 +11,7 @@ import (
 )
 
 var redisHost = os.Getenv("REDIS_HOST")
-var redisPort= os.Getenv("REDIS_PORT")
+var redisPort = os.Getenv("REDIS_PORT")
 
 type App struct {
 	router http.Handler
