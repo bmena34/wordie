@@ -1,6 +1,4 @@
-# Wordie
-
-Wordie is a project designed to help users manage and analyze words efficiently.
+# Wordie API.
 
 ## Prerequisites
 
@@ -8,6 +6,7 @@ Before you begin, ensure you have met the following requirements:
 
 - You have installed Docker.
 - You have installed Docker-Compose
+- You have installed the Redis-CLI
 
 ## Installation
 
@@ -18,7 +17,7 @@ Before you begin, ensure you have met the following requirements:
    cd wordie
    ```
 
-2. Add your API key as an environment variable:
+2. Add your API key as an environment variable to you docker-compose:
    API_KEY=your_api_key_here
 
 3. Build the Docker containers:
@@ -34,9 +33,17 @@ Before you begin, ensure you have met the following requirements:
    docker-compose up
    ```
 
-2. Set test values in Redis using `HSET`:
+2. Start Redis Session
+    ```sh
+    redis-cli
+    ```
+
+3. Set test values in Redis using `HSET`:
    ```sh
-   redis-cli
    HSET test_key_1 field1 "value1" field2 "value2"
    HSET test_key_2 field1 "value1" field2 "value2"
    ```
+4. Sell all test values using `HGETALL`:
+    ```sh
+    HGETALL <test_key>
+    ```
