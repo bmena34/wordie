@@ -1,5 +1,7 @@
 # Wordie API.
 
+API project using Golang and Redis.
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -20,30 +22,60 @@ Before you begin, ensure you have met the following requirements:
 2. Add your API key as an environment variable to you docker-compose:
    API_KEY=your_api_key_here
 
-3. Build the Docker containers:
+3. Build the Docker containers (this will also start the containers):
    ```sh
    docker-compose --build
    ```
 
 ## Usage
 
-1. Start the Docker containers:
+1. Start the Docker containers (if build isn't required):
 
    ```sh
    docker-compose up
    ```
 
-2. Start Redis Session
-    ```sh
-    redis-cli
-    ```
+2. Start Redis Session (in a different terminal window):
 
-3. Set test values in Redis using `HSET`:
    ```sh
-   HSET test_key_1 field1 "value1" field2 "value2"
+   redis-cli
+   ```
+
+3. How to set test values in Redis using `migration.sh`:
+
+   - This will add all Category/Word pairs with a key starting at 1.
+   - Add a 2 column csv to the root level of the project with the first column being category and second being the word.
+   - Change Script permissions.
+
+   ```sh
+   chmod +x migration.sh
    HSET test_key_2 field1 "value1" field2 "value2"
    ```
-4. Sell all test values using `HGETALL`:
-    ```sh
-    HGETALL <test_key>
-    ```
+
+   - The Script accepts the csv as and argument. Example of how to run:
+
+   ```sh
+   ././migration.sh <example.csc>
+   ```
+
+4. API currently has 2 endpoints:
+
+   - Status OK check:
+
+   ```sh
+   http://localhost:3000
+   ```
+
+   - Word Endpoint (GET) returns json with category and word keys and respected values. This is retrieved by the key created by the order of the CSV:
+
+   ```sh
+   http://localhost:3000/word/{id}
+   ```
+
+5. Authentication currently handled by API-TOKEN.
+
+6. To Come:
+   - Healthz endpoint
+   - Readiness probes
+   - Redis authentication
+   - Ability to load multiple years in advance

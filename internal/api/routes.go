@@ -2,6 +2,7 @@ package application
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/bmena34/wordie/internal/auth"
 	"github.com/bmena34/wordie/internal/handler"
@@ -28,8 +29,13 @@ func loadRoutes() *chi.Mux {
 }
 
 func loadWordRoutes(router chi.Router) {
+	redisAddr := os.Getenv("REDIS_ADDR")
+	if redisAddr == "" {
+		redisAddr = "redis:6379" // Default to IPv4 loopback address
+	}
+
 	rbd := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Addr: redisAddr,
 	})
 	wordHandler := &handler.Word{
 		Rdb: rbd,

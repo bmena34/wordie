@@ -2,7 +2,7 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -18,7 +18,6 @@ type Word struct {
 
 func (wd *Word) GetByID(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	fmt.Println("id:", id)
 	if id == "" {
 		http.Error(w, "id is required", http.StatusBadRequest)
 		return
@@ -29,7 +28,15 @@ func (wd *Word) GetByID(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "word not found", http.StatusNotFound)
 		return
 	} else if err != nil {
+		log.Printf("failed to get word for id %s: %v", id, err)
 		http.Error(w, "failed to get word", http.StatusInternalServerError)
+
+		return
+	}
+
+	if len(val) == 0 {
+		log.Printf("no data found for id %s", id)
+		http.Error(w, "word not found", http.StatusNotFound)
 		return
 	}
 
