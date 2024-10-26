@@ -49,13 +49,12 @@ Before you begin, ensure you have met the following requirements:
 
    ```sh
    chmod +x migration.sh
-   HSET test_key_2 field1 "value1" field2 "value2"
    ```
 
    - The Script accepts the csv as and argument. Example of how to run:
 
    ```sh
-   ././migration.sh <example.csc>
+   ./migration.sh <example.csv>
    ```
 
 4. API currently has 2 endpoints:
