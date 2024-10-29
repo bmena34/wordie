@@ -29,3 +29,5 @@ go.work.sum
 
 # CSV
 *.csv
+
+.DS_Store
