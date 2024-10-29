@@ -56,13 +56,13 @@ Before you begin, ensure you have met the following requirements:
 
 4. API currently has 2 endpoints:
 
-   - Status OK check:
+- Status OK check:
 
    ```sh
    http://localhost:3000
    ```
 
-   - Word Endpoint (GET) returns json with category and word keys and respected values. This is retrieved by the key created by the order of the CSV:
+- Word Endpoint (GET) returns json with category and word keys and respected values. This is retrieved by the key created by the order of the CSV:
 
    ```sh
    http://localhost:3000/word/{id}
