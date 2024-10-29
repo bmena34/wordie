@@ -14,13 +14,10 @@ Before you begin, ensure you have met the following requirements:
 
 1. Clone the repository:
 
-   ```sh
-   git clone https://github.com/yourusername/wordie.git
-   cd wordie
-   ```
-
 2. Add your API key as an environment variable to your docker-compose:
-   API_KEY=your_api_key_here
+   ```sh
+   API_KEY=<your_api_key_here>
+   ```
 
 3. Build the Docker containers (this will also start the containers):
    ```sh
@@ -43,15 +40,15 @@ Before you begin, ensure you have met the following requirements:
 
 3. How to set test values in Redis using `migration.sh`:
 
-   - This will add all Category/Word pairs with a key starting at 1.
-   - Add a 2 column csv to the root level of the project with the first column being category and second being the word.
-   - Change Script permissions.
+- This will add all Category/Word pairs with a key starting at 1.
+- Add a 2 column csv to the root level of the project with the first column being category and second being the word.
+- Change Script permissions.
 
    ```sh
    chmod +x migration.sh
    ```
 
-   - The Script accepts the csv as and argument. Example of how to run:
+- The Script accepts the csv as and argument. Example of how to run:
 
    ```sh
    ./migration.sh <example.csv>
@@ -73,8 +70,4 @@ Before you begin, ensure you have met the following requirements:
 
 5. Authentication currently handled by API-TOKEN.
 
-6. To Come:
-   - Healthz endpoint
-   - Readiness probes
-   - Redis authentication
-   - Ability to load multiple years in advance
+6. More to come...
